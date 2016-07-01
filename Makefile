@@ -12,7 +12,7 @@ ifeq ($(SYNTAX_EXTENSION),camlp4)
 	BASIC_PACKAGE 	=	-package js_of_ocaml -package js_of_ocaml.syntax -package cordova-plugin-file -package lwt.ppx
 	BASIC_SYNTAX	=	-syntax camlp4o
 else
-	BASIC_PACKAGE	=	-package js_of_ocaml,js_of_ocaml.ppx,gen_js_api,cordova-plugin-file,ocaml-googlemap,ocaml-geoloc,lwt.ppx
+	BASIC_PACKAGE	=	-package js_of_ocaml,js_of_ocaml.ppx,gen_js_api,ocaml-googlemap,ocaml-geoloc,lwt.ppx
 endif
 
 ifeq ($(USE_GEN_JS_API) $(DEBUG),True True)
