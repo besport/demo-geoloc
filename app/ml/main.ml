@@ -1,4 +1,4 @@
-open Web
+open Geoloc
 open Maps
 
 let doc = Dom_html.document
@@ -29,12 +29,12 @@ let start_tracking_p path _ _ =
 
 let stop_tracking_p path _ _ =
   let l = stop_tracking path in
-  let liste = coords_of_path path in
+  (*let liste = coords_of_path path in
   let () = List.iter
       (fun (x,y) ->
          let str = Printf.sprintf "(%f,%f)" x y in
          Console.log str
-      ) liste in
+      ) liste in*)
   l
 
 type urls = string list
@@ -107,7 +107,8 @@ let on_device_ready () =
   let () = Dom.appendChild doc##.body stop_position in
   (** Adding map **)
   let centre = (49.2,2.0) in
-  let map = create_map centre 10 "gmap" in
+  let gmap = Dom_html.getElementById "gmap" in
+  let map = create_map centre 10 gmap in
   let () = set_my_position_icon my_position_img in
   let () = test map in
   let path = create_path map in
