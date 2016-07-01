@@ -12,7 +12,7 @@ ifeq ($(SYNTAX_EXTENSION),camlp4)
 	BASIC_PACKAGE 	=	-package js_of_ocaml -package js_of_ocaml.syntax -package cordova-plugin-file -package lwt.ppx
 	BASIC_SYNTAX	=	-syntax camlp4o
 else
-	BASIC_PACKAGE	=	-package js_of_ocaml -package js_of_ocaml.ppx -package cordova-plugin-file -package geoloc -package lwt.ppx
+	BASIC_PACKAGE	=	-package js_of_ocaml,js_of_ocaml.ppx,gen_js_api,cordova-plugin-file,ocaml-googlemap,ocaml-geoloc,lwt.ppx
 endif
 
 ifeq ($(USE_GEN_JS_API) $(DEBUG),True True)
@@ -53,8 +53,8 @@ all: init_dir css js_of_ocaml $(PROD_DIRECTORY_LIST)
 ##### Compile bytecode to js
 js_of_ocaml:
 	mkdir -p $(ML_JS_DIRECTORY)
-	ocamlfind $(CC_CAML) -package geoloc -I $(ML_DIRECTORY) -o $(TMP_OUT_BYTECODE) \
-	$(BASIC_PACKAGE) $(CUSTOM_PACKAGE) $(BASIC_SYNTAX) $(CUSTOM_SYNTAX) \
+	ocamlfind $(CC_CAML) -I $(ML_DIRECTORY) -o $(TMP_OUT_BYTECODE) \
+	$(BASIC_PACKAGE) $(CUSTOM_PACKAGE) $(BASIC_SYNTAX) $(CUSTOM_SYNTAX) -no-check-prims \
 	-linkpkg  $(MLI_FILES) $(ML_FILES)
 	$(CC_JS)
 
