@@ -167,8 +167,26 @@ init_plugins: $(PLUGINS)
 $(PLUGINS):
 	cordova plugin add $@
 
+gen_js_api.pin:
+	opam pin add gen_js_api "https://github.com/o-marshmallow/gen_js_api.git"
+
+jsoo_lib.pin:
+	opam pin add jsoo_lib "https://github.com/dannywillems/jsoo-lib.git"
+
+cordova.pin:
+	opam repository add cordova "https://github.com/dannywillems/ocaml-cordova-plugin-list.git" 2> /dev/null || true
+
+
+ocaml-googlemap.pin:
+	opam pin add ocaml-googlemap "https://github.com/besport/ocaml-googlemap.git"
+
+ocaml-geoloc.pin:
+	opam pin add ocaml-geoloc "https://github.com/besport/geoloc.git"
+
+init_pin: gen_js_api.pin jsoo_lib.pin cordova.pin ocaml-googlemap.pin ocaml-geoloc.pin
+
 init_opam:
 	opam install $(OPAM_PKG)
 
-init: init_dir init_opam init_plugins
+init: init_dir init_pin init_opam init_plugins
 	mkdir -p hooks
