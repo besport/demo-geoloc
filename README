@@ -1,0 +1,14 @@
+# Demo geolocation
+
+## Install & building
+Pinning and installing dependencies with opam :
+
+`make init`
+
+Add android to the platforms :
+
+`make add_android`
+
+Run on the phone : 
+
+`make run_android`
