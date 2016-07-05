@@ -1,5 +1,8 @@
 # Demo geolocation
 
+## Requirements :
+npm, node, cordova, android-sdk
+
 ## Install & building
 Pinning and installing dependencies with opam :
 
